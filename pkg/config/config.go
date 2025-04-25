@@ -10,14 +10,15 @@ import (
 
 type (
 	Config struct {
-		AppPort, JavaContainerName, ContainerWorkingDir, JavaSourceFileName, JavaClassName string
-		CompilationTimeout, ExecutionTimeout                                               time.Duration
+		AppPort, JavaContainerName, ContainerWorkingDir, JavaSourceFileName, JavaClassName, LogPath string
+		CompilationTimeout, ExecutionTimeout                                                        time.Duration
 	}
 )
 
 func NewConfig() *Config {
 	_ = godotenv.Load()
 	return &Config{
+		LogPath:             getEnv("LOG_PATH", "app.log"),
 		AppPort:             getEnv("APP_PORT", "7771"),
 		JavaContainerName:   getEnv("JAVA_CONTAINER_NAME", "online_compiler-java-runner-1"),
 		JavaClassName:       getEnv("JAVA_CLASS_NAME", "Main"),
