@@ -1,0 +1,135 @@
+{"client_addr":"[::1]:52650","level":"info","msg":"New Java Execute stream started","time":"2025-04-26T02:20:28+05:00"}
+{"client_addr":"[::1]:52650","level":"info","msg":"Initial request received, establishing session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:28+05:00"}
+{"level":"info","msg":"New Java client created and stored","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:28+05:00"}
+{"level":"info","msg":"Received Code payload for Java execution","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:28+05:00"}
+{"level":"info","msg":"Starting Java execution process","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:28+05:00"}
+{"level":"info","msg":"Starting ExecuteJava","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:28+05:00"}
+{"file":"/tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1314768235.java","level":"info","msg":"Code written to host temp file: /tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1314768235.java","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:28+05:00"}
+{"destination_container":"online_compiler-java-runner-1","destination_path":"/app/Main.java","level":"info","msg":"Copying /tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1314768235.java to online_compiler-java-runner-1:/app/Main.java","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","source":"/tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1314768235.java","time":"2025-04-26T02:20:28+05:00"}
+{"level":"info","msg":"Successfully copied code to container","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:28+05:00"}
+{"command":"docker exec online_compiler-java-runner-1 javac -d /app /app/Main.java","level":"info","msg":"Compiling code inside container","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:28+05:00"}
+{"level":"info","msg":"Compilation successful (no output)","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"command":"docker exec -i online_compiler-java-runner-1 java -cp /app Main","level":"info","msg":"Preparing execution command","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Starting Java execution","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Java execution started with PID 915065","pid":915065,"session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Waiting for Java execution to complete","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"bytes":18,"level":"info","msg":"STDOUT Raw Chunk (18 bytes): \"Try programiz.pro\\n\"","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"STDOUT closed/EOF","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"STDOUT reader goroutine finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"STDERR closed/EOF","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"STDERR reader goroutine finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"ReadOutputs completed (both stdout/stderr readers finished)","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"error":null,"level":"info","msg":"Java execution command finished (Wait err: \u003cnil\u003e). Waiting for output processing.","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Output processing finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Execution completed successfully","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"ExecuteJava finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Send channel closed at the end of ExecuteJava","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Starting cleanup","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Attempting to kill process 915065","pid":915065,"session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Process 915065 killed or already done","pid":915065,"session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"file":"/tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1314768235.java","level":"info","msg":"Removing host temp file: /tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1314768235.java","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Send channel closed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"SendResponses goroutine finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"command":"docker exec online_compiler-java-runner-1 sh -c rm -f /app/Main.java /app/Main.class","level":"info","msg":"Attempting to clean up container files","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Container files cleanup command executed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"level":"info","msg":"Cleanup finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:29+05:00"}
+{"client_addr":"[::1]:52650","level":"info","msg":"Stream closed by client (EOF)","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:42+05:00"}
+{"level":"info","msg":"Java Execute stream ended. Initiating cleanup for session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:42+05:00"}
+{"level":"info","msg":"Removing Java client session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:42+05:00"}
+{"level":"info","msg":"Starting cleanup","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:42+05:00"}
+{"command":"docker exec online_compiler-java-runner-1 sh -c rm -f /app/Main.java /app/Main.class","level":"info","msg":"Attempting to clean up container files","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:42+05:00"}
+{"level":"info","msg":"Container files cleanup command executed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:42+05:00"}
+{"level":"info","msg":"Cleanup finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:42+05:00"}
+{"level":"info","msg":"Java client session removed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:42+05:00"}
+{"level":"info","msg":"Stream context done (context canceled), cancelling client context for session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:20:42+05:00"}
+{"client_addr":"[::1]:38024","level":"info","msg":"New Java Execute stream started","time":"2025-04-26T02:22:45+05:00"}
+{"client_addr":"[::1]:38024","level":"info","msg":"Initial request received, establishing session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:45+05:00"}
+{"level":"info","msg":"New Java client created and stored","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:45+05:00"}
+{"level":"info","msg":"Received Code payload for Java execution","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:45+05:00"}
+{"level":"info","msg":"Starting Java execution process","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:45+05:00"}
+{"level":"info","msg":"Starting ExecuteJava","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:45+05:00"}
+{"file":"/tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1962619021.java","level":"info","msg":"Code written to host temp file: /tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1962619021.java","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:45+05:00"}
+{"destination_container":"online_compiler-java-runner-1","destination_path":"/app/Main.java","level":"info","msg":"Copying /tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1962619021.java to online_compiler-java-runner-1:/app/Main.java","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","source":"/tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1962619021.java","time":"2025-04-26T02:22:45+05:00"}
+{"level":"info","msg":"Successfully copied code to container","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:45+05:00"}
+{"command":"docker exec online_compiler-java-runner-1 javac -d /app /app/Main.java","level":"info","msg":"Compiling code inside container","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:45+05:00"}
+{"level":"info","msg":"Compilation successful (no output)","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:46+05:00"}
+{"command":"docker exec -i online_compiler-java-runner-1 java -cp /app Main","level":"info","msg":"Preparing execution command","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:46+05:00"}
+{"level":"info","msg":"Starting Java execution","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:46+05:00"}
+{"level":"info","msg":"Java execution started with PID 918939","pid":918939,"session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:46+05:00"}
+{"level":"info","msg":"Waiting for Java execution to complete","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:46+05:00"}
+{"bytes":42,"level":"info","msg":"STDOUT Raw Chunk (42 bytes): \"Enter your favorite programming language: \"","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:47+05:00"}
+{"chunk":"Enter your favorite programming language:","level":"info","msg":"Detected possible input prompt, sending WAITING_FOR_INPUT","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:22:47+05:00"}
+{"level":"info","msg":"STDOUT closed/EOF","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"STDOUT reader goroutine finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"STDERR closed/EOF","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"STDERR reader goroutine finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"ReadOutputs completed (both stdout/stderr readers finished)","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"error":"signal: killed","level":"info","msg":"Java execution command finished (Wait err: signal: killed). Waiting for output processing.","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"Output processing finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"error":"signal: killed","exit_code":-1,"level":"info","msg":"Execution failed with exit code -1: signal: killed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"ExecuteJava finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"Send channel closed at the end of ExecuteJava","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"Starting cleanup","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"Attempting to kill process 918939","pid":918939,"session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"Process 918939 killed or already done","pid":918939,"session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"file":"/tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1962619021.java","level":"info","msg":"Removing host temp file: /tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-1962619021.java","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"Send channel closed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"SendResponses goroutine finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"command":"docker exec online_compiler-java-runner-1 sh -c rm -f /app/Main.java /app/Main.class","level":"info","msg":"Attempting to clean up container files","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:16+05:00"}
+{"level":"info","msg":"Container files cleanup command executed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:17+05:00"}
+{"level":"info","msg":"Cleanup finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:23:17+05:00"}
+{"client_addr":"[::1]:42136","level":"info","msg":"New Java Execute stream started","time":"2025-04-26T02:27:45+05:00"}
+{"client_addr":"[::1]:42136","level":"info","msg":"Initial request received, establishing session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:45+05:00"}
+{"level":"info","msg":"Stale session found, cleaning up previous instance before creating new one","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:45+05:00"}
+{"level":"info","msg":"Removing Java client session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:45+05:00"}
+{"level":"info","msg":"Starting cleanup","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:45+05:00"}
+{"command":"docker exec online_compiler-java-runner-1 sh -c rm -f /app/Main.java /app/Main.class","level":"info","msg":"Attempting to clean up container files","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:45+05:00"}
+{"level":"info","msg":"Container files cleanup command executed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"level":"info","msg":"Cleanup finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"level":"info","msg":"Java client session removed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"level":"info","msg":"New Java client created and stored","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"level":"info","msg":"Received Code payload for Java execution","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"level":"info","msg":"Starting Java execution process","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"level":"info","msg":"Starting ExecuteJava","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"file":"/tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-3845289065.java","level":"info","msg":"Code written to host temp file: /tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-3845289065.java","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"destination_container":"online_compiler-java-runner-1","destination_path":"/app/Main.java","level":"info","msg":"Copying /tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-3845289065.java to online_compiler-java-runner-1:/app/Main.java","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","source":"/tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-3845289065.java","time":"2025-04-26T02:27:46+05:00"}
+{"level":"info","msg":"Successfully copied code to container","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"command":"docker exec online_compiler-java-runner-1 javac -d /app /app/Main.java","level":"info","msg":"Compiling code inside container","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:46+05:00"}
+{"level":"info","msg":"Compilation successful (no output)","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:47+05:00"}
+{"command":"docker exec -i online_compiler-java-runner-1 java -cp /app Main","level":"info","msg":"Preparing execution command","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:47+05:00"}
+{"level":"info","msg":"Starting Java execution","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:47+05:00"}
+{"level":"info","msg":"Java execution started with PID 927414","pid":927414,"session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:47+05:00"}
+{"level":"info","msg":"Waiting for Java execution to complete","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:47+05:00"}
+{"bytes":42,"level":"info","msg":"STDOUT Raw Chunk (42 bytes): \"Enter your favorite programming language: \"","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:48+05:00"}
+{"chunk":"Enter your favorite programming language:","level":"info","msg":"Detected possible input prompt, sending WAITING_FOR_INPUT","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:48+05:00"}
+{"input_length":5,"level":"info","msg":"Received Input payload: \"Hello\"","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"input":"Hello","level":"info","msg":"Writing input to stdin: \"Hello\"","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"bytes":25,"level":"info","msg":"STDOUT Raw Chunk (25 bytes): \"Hello is a great choice!\\n\"","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"STDOUT closed/EOF","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"STDOUT reader goroutine finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"error":null,"level":"info","msg":"Java execution command finished (Wait err: \u003cnil\u003e). Waiting for output processing.","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"STDERR closed/EOF","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"STDERR reader goroutine finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"ReadOutputs completed (both stdout/stderr readers finished)","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"Output processing finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"Execution completed successfully","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"ExecuteJava finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"Send channel closed at the end of ExecuteJava","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"Starting cleanup","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"Attempting to kill process 927414","pid":927414,"session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"Process 927414 killed or already done","pid":927414,"session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"file":"/tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-3845289065.java","level":"info","msg":"Removing host temp file: /tmp/java-f19a6393-45b1-49d2-a8bc-01485ba1efe3-3845289065.java","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"Send channel closed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"SendResponses goroutine finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"command":"docker exec online_compiler-java-runner-1 sh -c rm -f /app/Main.java /app/Main.class","level":"info","msg":"Attempting to clean up container files","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"Container files cleanup command executed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"level":"info","msg":"Cleanup finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:27:58+05:00"}
+{"client_addr":"[::1]:42136","level":"info","msg":"Stream closed by client (EOF)","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:28:09+05:00"}
+{"level":"info","msg":"Java Execute stream ended. Initiating cleanup for session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:28:09+05:00"}
+{"level":"info","msg":"Removing Java client session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:28:09+05:00"}
+{"level":"info","msg":"Starting cleanup","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:28:09+05:00"}
+{"command":"docker exec online_compiler-java-runner-1 sh -c rm -f /app/Main.java /app/Main.class","level":"info","msg":"Attempting to clean up container files","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:28:09+05:00"}
+{"level":"info","msg":"Container files cleanup command executed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:28:09+05:00"}
+{"level":"info","msg":"Cleanup finished","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:28:09+05:00"}
+{"level":"info","msg":"Java client session removed","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:28:09+05:00"}
+{"level":"info","msg":"Stream context done (context canceled), cancelling client context for session","session_id":"f19a6393-45b1-49d2-a8bc-01485ba1efe3","time":"2025-04-26T02:28:09+05:00"}

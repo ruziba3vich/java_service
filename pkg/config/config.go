@@ -19,13 +19,13 @@ func NewConfig() *Config {
 	_ = godotenv.Load()
 	return &Config{
 		LogPath:             getEnv("LOG_PATH", "app.log"),
-		AppPort:             getEnv("APP_PORT", "7771"),
+		AppPort:             getEnv("APP_PORT", "7773"),
 		JavaContainerName:   getEnv("JAVA_CONTAINER_NAME", "online_compiler-java-runner-1"),
 		JavaClassName:       getEnv("JAVA_CLASS_NAME", "Main"),
 		JavaSourceFileName:  getEnv("JAVA_SOURCE_FILE_NAME", "Main.java"),
 		ContainerWorkingDir: getEnv("CONTAINER_WORKING_DIR", "/app"),
 		CompilationTimeout:  getEnvTime("COMPILATION_TIME_OUT", 15),
-		ExecutionTimeout:    getEnvTime("EXECUTION_TIME_OUT", 30),
+		ExecutionTimeout:    getEnvTime("EXECUTION_TIME_OUT", 60),
 	}
 }
 

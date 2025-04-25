@@ -29,12 +29,16 @@ func NewNetListener(lc fx.Lifecycle, cfg *config.Config) (net.Listener, error) {
 	return lis, nil
 }
 
+func NewLogger(cfg *config.Config) (*logger.Logger, error) {
+	return logger.NewLogger(cfg.LogPath)
+}
+
 func main() {
 	fx.New(
 		fx.Provide(
 			config.NewConfig,
 			NewNetListener,
-			logger.NewLogger,
+			NewLogger,
 			service.NewJavaExecutorServer,
 		),
 		fx.Invoke(func(lc fx.Lifecycle, lis net.Listener, server *service.JavaExecutorServer) {
