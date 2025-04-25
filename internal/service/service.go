@@ -11,6 +11,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/ruziba3vich/java_service/genprotos/genprotos/compiler_service"
 	"github.com/ruziba3vich/java_service/internal/storage"
+	"github.com/ruziba3vich/java_service/pkg/config"
 	logger "github.com/ruziba3vich/prodonik_lgger"
 
 	"google.golang.org/grpc/codes"
@@ -23,12 +24,14 @@ type JavaExecutorServer struct {
 	clients map[string]*storage.JavaClient
 	mu      sync.Mutex
 	logger  *logger.Logger
+	cfg     *config.Config
 }
 
-func NewJavaExecutorServer(logger *logger.Logger) *JavaExecutorServer {
+func NewJavaExecutorServer(cfg *config.Config, logger *logger.Logger) *JavaExecutorServer {
 	return &JavaExecutorServer{
 		clients: make(map[string]*storage.JavaClient),
 		logger:  logger,
+		cfg:     cfg,
 	}
 }
 
@@ -126,7 +129,7 @@ func (s *JavaExecutorServer) Execute(stream compiler_service.CodeExecutor_Execut
 				linkedCancel()
 			}(sessionID)
 
-			client = storage.NewJavaClient(sessionID, clientCtx, clientCancel, s.logger)
+			client = storage.NewJavaClient(sessionID, clientCtx, clientCancel, s.cfg, s.logger)
 			s.clients[sessionID] = client
 			s.logger.Info("New Java client created and stored", map[string]any{"session_id": sessionID})
 			s.mu.Unlock()
