@@ -13,16 +13,8 @@ import (
 	"time"
 
 	"github.com/ruziba3vich/java_service/genprotos/genprotos/compiler_service"
+	"github.com/ruziba3vich/java_service/pkg/config"
 	logger "github.com/ruziba3vich/prodonik_lgger"
-)
-
-const (
-	javaContainerName   = "online_compiler-java-runner-1"
-	containerWorkingDir = "/app"
-	javaSourceFilename  = "Main.java"
-	javaClassName       = "Main"
-	compilationTimeout  = 15 * time.Second
-	executionTimeout    = 30 * time.Second
 )
 
 type JavaClient struct {
@@ -37,9 +29,10 @@ type JavaClient struct {
 	mu        sync.Mutex
 	wg        sync.WaitGroup
 	logger    *logger.Logger
+	cfg       *config.Config
 }
 
-func NewJavaClient(sessionID string, ctx context.Context, cancel context.CancelFunc, logger *logger.Logger) *JavaClient {
+func NewJavaClient(sessionID string, ctx context.Context, cancel context.CancelFunc, cfg *config.Config, logger *logger.Logger) *JavaClient {
 	return &JavaClient{
 		sessionID: sessionID,
 		done:      make(chan struct{}),
@@ -47,6 +40,7 @@ func NewJavaClient(sessionID string, ctx context.Context, cancel context.CancelF
 		ctx:       ctx,
 		cancel:    cancel,
 		logger:    logger,
+		cfg:       cfg,
 	}
 }
 
@@ -182,11 +176,11 @@ func (c *JavaClient) cleanupContainerFiles() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	containerSrcPath := filepath.Join(containerWorkingDir, javaSourceFilename)
-	containerClassPath := filepath.Join(containerWorkingDir, javaClassName+".class")
+	containerSrcPath := filepath.Join(c.cfg.ContainerWorkingDir, c.cfg.JavaSourceFileName)
+	containerClassPath := filepath.Join(c.cfg.ContainerWorkingDir, c.cfg.JavaClassName+".class")
 
 	rmCmdStr := fmt.Sprintf("rm -f %s %s", containerSrcPath, containerClassPath)
-	cmd := exec.CommandContext(ctx, "docker", "exec", javaContainerName, "sh", "-c", rmCmdStr)
+	cmd := exec.CommandContext(ctx, "docker", "exec", c.cfg.JavaContainerName, "sh", "-c", rmCmdStr)
 
 	c.logger.Info("Attempting to clean up container files", map[string]any{
 		"session_id": c.sessionID,
@@ -334,13 +328,13 @@ func (c *JavaClient) ExecuteJava(code string) {
 	c.mu.Unlock()
 	c.logger.Info(fmt.Sprintf("Code written to host temp file: %s", tempFilePath), map[string]any{"session_id": c.sessionID, "file": tempFilePath})
 
-	containerSrcPath := filepath.Join(containerWorkingDir, javaSourceFilename)
+	containerSrcPath := filepath.Join(c.cfg.ContainerWorkingDir, c.cfg.JavaSourceFileName)
 	copyCtx, copyCancel := context.WithTimeout(c.ctx, 10*time.Second)
 	defer copyCancel()
 
-	copyCmd := exec.CommandContext(copyCtx, "docker", "cp", tempFilePath, fmt.Sprintf("%s:%s", javaContainerName, containerSrcPath))
-	c.logger.Info(fmt.Sprintf("Copying %s to %s:%s", tempFilePath, javaContainerName, containerSrcPath),
-		map[string]any{"session_id": c.sessionID, "source": tempFilePath, "destination_container": javaContainerName, "destination_path": containerSrcPath})
+	copyCmd := exec.CommandContext(copyCtx, "docker", "cp", tempFilePath, fmt.Sprintf("%s:%s", c.cfg.JavaContainerName, containerSrcPath))
+	c.logger.Info(fmt.Sprintf("Copying %s to %s:%s", tempFilePath, c.cfg.JavaContainerName, containerSrcPath),
+		map[string]any{"session_id": c.sessionID, "source": tempFilePath, "destination_container": c.cfg.JavaContainerName, "destination_path": containerSrcPath})
 
 	if output, err := copyCmd.CombinedOutput(); err != nil {
 		c.logger.Error(fmt.Sprintf("Failed to copy code to container: %v, Output: %s", err, string(output)),
@@ -353,11 +347,11 @@ func (c *JavaClient) ExecuteJava(code string) {
 	}
 	c.logger.Info("Successfully copied code to container", map[string]any{"session_id": c.sessionID})
 
-	compileCtx, compileCancel := context.WithTimeout(c.ctx, compilationTimeout)
+	compileCtx, compileCancel := context.WithTimeout(c.ctx, c.cfg.CompilationTimeout)
 	defer compileCancel()
 
-	compileCmd := exec.CommandContext(compileCtx, "docker", "exec", javaContainerName,
-		"javac", "-d", containerWorkingDir, containerSrcPath)
+	compileCmd := exec.CommandContext(compileCtx, "docker", "exec", c.cfg.JavaContainerName,
+		"javac", "-d", c.cfg.ContainerWorkingDir, containerSrcPath)
 
 	c.logger.Info("Compiling code inside container", map[string]any{
 		"session_id": c.sessionID,
@@ -373,10 +367,10 @@ func (c *JavaClient) ExecuteJava(code string) {
 
 	if compileErr != nil {
 		if errors.Is(compileErr, context.DeadlineExceeded) {
-			c.logger.Error("Compilation timed out", map[string]any{"session_id": c.sessionID, "timeout": compilationTimeout})
+			c.logger.Error("Compilation timed out", map[string]any{"session_id": c.sessionID, "timeout": c.cfg.CompilationTimeout})
 			c.SendResponse(&compiler_service.ExecuteResponse{
 				SessionId: c.sessionID,
-				Payload:   &compiler_service.ExecuteResponse_Error{Error: &compiler_service.Error{ErrorText: fmt.Sprintf("Compilation timed out after %s", compilationTimeout)}},
+				Payload:   &compiler_service.ExecuteResponse_Error{Error: &compiler_service.Error{ErrorText: fmt.Sprintf("Compilation timed out after %s", c.cfg.CompilationTimeout)}},
 			})
 		} else if errors.Is(compileErr, context.Canceled) {
 			c.logger.Info("Compilation cancelled by context", map[string]any{"session_id": c.sessionID})
@@ -406,11 +400,11 @@ func (c *JavaClient) ExecuteJava(code string) {
 		c.logger.Info("Compilation successful (no output)", map[string]any{"session_id": c.sessionID})
 	}
 
-	execCtx, execCancel := context.WithTimeout(c.ctx, executionTimeout)
+	execCtx, execCancel := context.WithTimeout(c.ctx, c.cfg.ExecutionTimeout)
 	defer execCancel()
 
 	runCmd := exec.CommandContext(execCtx, "docker", "exec", "-i",
-		javaContainerName, "java", "-cp", containerWorkingDir, javaClassName)
+		c.cfg.JavaContainerName, "java", "-cp", c.cfg.ContainerWorkingDir, c.cfg.JavaClassName)
 
 	c.logger.Info("Preparing execution command", map[string]any{
 		"session_id": c.sessionID,
@@ -509,10 +503,10 @@ func (c *JavaClient) ExecuteJava(code string) {
 				Payload:   &compiler_service.ExecuteResponse_Status{Status: &compiler_service.Status{State: "CANCELLED"}},
 			})
 		} else if errors.Is(waitErr, context.DeadlineExceeded) {
-			c.logger.Error("Execution timed out", map[string]any{"session_id": c.sessionID, "timeout": executionTimeout, "error": waitErr})
+			c.logger.Error("Execution timed out", map[string]any{"session_id": c.sessionID, "timeout": c.cfg.ExecutionTimeout, "error": waitErr})
 			c.SendResponse(&compiler_service.ExecuteResponse{
 				SessionId: c.sessionID,
-				Payload:   &compiler_service.ExecuteResponse_Error{Error: &compiler_service.Error{ErrorText: fmt.Sprintf("Execution timed out after %s", executionTimeout)}},
+				Payload:   &compiler_service.ExecuteResponse_Error{Error: &compiler_service.Error{ErrorText: fmt.Sprintf("Execution timed out after %s", c.cfg.ExecutionTimeout)}},
 			})
 			c.mu.Lock()
 			if c.cmd != nil && c.cmd.Process != nil {
