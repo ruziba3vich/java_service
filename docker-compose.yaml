@@ -1,0 +1,25 @@
+services:
+  java-compiler-service:
+    build:
+      context: . 
+      dockerfile: Dockerfile.go-service
+    container_name: java_compiler_service 
+    ports:
+      - "7773:7773"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - java-runner
+    restart: unless-stopped
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+  java-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.java-runner
+    container_name: online_compiler-java-runner-1
+    restart: unless-stopped
+
+networks:
+  default:
+    driver: bridge
