@@ -12,6 +12,7 @@ import (
 
 	"go.uber.org/fx"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func NewNetListener(lc fx.Lifecycle, cfg *config.Config) (net.Listener, error) {
@@ -44,6 +45,7 @@ func main() {
 		fx.Invoke(func(lc fx.Lifecycle, lis net.Listener, server *service.JavaExecutorServer) {
 			s := grpc.NewServer()
 			compiler_service.RegisterCodeExecutorServer(s, server)
+			reflection.Register(s)
 
 			lc.Append(fx.Hook{
 				OnStart: func(ctx context.Context) error {
