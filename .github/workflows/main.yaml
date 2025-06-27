@@ -11,24 +11,21 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # Updated to the latest version for better compatibility
+        uses: actions/checkout@v4
 
       - name: Set up SSH access
-        uses: webfactory/ssh-agent@v0.9.0 # Updated to the latest version
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Ensure target directory exists on server
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "mkdir -p /home/${{ secrets.SSH_USER }}/online_compiler/java_service"
+        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "mkdir -p /home/${{ secrets.SSH_USER }}/online_compiler/java_service"
 
       - name: Synchronize files to server with rsync
-        run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" --exclude '.git' ./ ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.SSH_USER }}/online_compiler/java_service/
+        run: rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" --exclude '.git' ./ ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.SSH_USER }}/online_compiler/java_service/
 
       - name: Verify Docker Compose is installed
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "docker compose version || { echo 'Docker Compose is not installed'; exit 1; }"
+        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "docker compose version || { echo 'Docker Compose is not installed'; exit 1; }"
 
       - name: Deploy with Docker Compose
         run: |
