@@ -18,6 +18,6 @@ WORKDIR /app
 
 COPY --from=builder /server /server
 
-EXPOSE 7773
+EXPOSE 701
 
 CMD ["/server"]
