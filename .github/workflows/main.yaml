@@ -1,4 +1,4 @@
-name: Deploy Logging Service
+name: Deploy Java Service
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
 
       - name: Deploy with Docker Compose
         run: |
-          ssh -T -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+          ssh -T -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << EOF
             set -e
             echo "Changing directory to logging service..."
             cd /home/${{ secrets.SSH_USER }}/online_compiler/java_service
