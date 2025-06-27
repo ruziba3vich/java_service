@@ -11,16 +11,16 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # Updated to the latest version for better compatibility
 
       - name: Set up SSH access
-        uses: webfactory/ssh-agent@v0.5.4
+        uses: webfactory/ssh-agent@v0.9.0 # Updated to the latest version
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Ensure target directory exists on server
         run: |
-          ssh -T -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "mkdir -p /home/${{ secrets.SSH_USER }}/online_compiler/java_service"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "mkdir -p /home/${{ secrets.SSH_USER }}/online_compiler/java_service"
 
       - name: Synchronize files to server with rsync
         run: |
@@ -28,17 +28,17 @@ jobs:
 
       - name: Verify Docker Compose is installed
         run: |
-          ssh -T -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "docker compose version || { echo 'Docker Compose is not installed'; exit 1; }"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "docker compose version || { echo 'Docker Compose is not installed'; exit 1; }"
 
       - name: Deploy with Docker Compose
         run: |
-          ssh -T -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << EOF
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             set -e
-            echo "Changing directory to logging service..."
+            echo "Changing directory to Java service..."
             cd /home/${{ secrets.SSH_USER }}/online_compiler/java_service
             echo "Running docker compose down..."
             docker compose down
             echo "Running docker compose up -d --build..."
-            COMPOSE_BAKE=true docker compose up -d --build
+            docker compose up -d --build
             echo "Deployment completed successfully!"
           EOF
