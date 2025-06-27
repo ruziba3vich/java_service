@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.go-service
     container_name: java_compiler_service 
     ports:
-      - "7773:7773"
+      - "701:701"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
