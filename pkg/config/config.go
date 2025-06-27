@@ -19,7 +19,7 @@ func NewConfig() *Config {
 	_ = godotenv.Load()
 	return &Config{
 		LogPath:             getEnv("LOG_PATH", "app.log"),
-		AppPort:             getEnv("APP_PORT", "7773"),
+		AppPort:             getEnv("APP_PORT", "701"),
 		JavaContainerName:   getEnv("JAVA_CONTAINER_NAME", "online_compiler-java-runner-1"),
 		JavaClassName:       getEnv("JAVA_CLASS_NAME", "Main"),
 		JavaSourceFileName:  getEnv("JAVA_SOURCE_FILE_NAME", "Main.java"),
