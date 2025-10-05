@@ -3,7 +3,7 @@ name: Build and Deploy Backend
 on:
   push:
     branches:
-      - test
+      - main
 
 jobs:
   build:
@@ -18,11 +18,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build --no-cache -t ghcr.io/ruziba3vich/js_service:latest .
+          docker build --no-cache -t ghcr.io/ruziba3vich/java_service:latest .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/ruziba3vich/js_service:latest
+          docker push ghcr.io/ruziba3vich/java_service:latest
 
   deploy:
     needs: build
@@ -49,15 +49,15 @@ jobs:
             docker rm tmii-go-api-gateway || true
       
             echo "🗑️ Removing old Docker image..."
-            docker rmi ghcr.io/ruziba3vich/js_service:latest || true
+            docker rmi ghcr.io/ruziba3vich/java_service:latest || true
       
             echo "📥 Pulling latest Docker image..."
-            docker pull ghcr.io/ruziba3vich/js_service:latest
+            docker pull ghcr.io/ruziba3vich/java_service:latest
       
             echo "🔍 Checking for processes on port 704..."
-            sudo fuser -k 704/tcp || true
+            sudo fuser -k 701/tcp || true
       
             echo "🚀 Running new container..."
-            docker run -d --restart always --name tmii-go-api-gateway -p 704:704 ghcr.io/ruziba3vich/js_service:latest
+            docker run -d --restart always --name tmii-go-api-gateway -p 701:701 ghcr.io/ruziba3vich/java_service:latest
       
             echo "✅ Deployment Successful!"
