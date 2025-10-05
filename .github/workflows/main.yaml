@@ -16,13 +16,13 @@ jobs:
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
 
-      - name: Build Docker image
+      - name: Build Docker image via docker-compose
         run: |
-          docker build --no-cache -t ghcr.io/ruziba3vich/java_service:latest .
+          docker compose build --no-cache java_service
 
-      - name: Push Docker image
+      - name: Push Docker image to GHCR
         run: |
-          docker push ghcr.io/ruziba3vich/java_service:latest
+          docker compose push java_service
 
   deploy:
     needs: build
@@ -32,7 +32,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy to Server (via Docker)
+      - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SERVER_IP }}
@@ -43,21 +43,21 @@ jobs:
           script: |
             echo "🔐 Authenticating with GHCR..."
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
-            
+
             echo "🛑 Stopping old container (if exists)..."
-            docker stop tmii-go-api-gateway || true
-            docker rm tmii-go-api-gateway || true
-      
+            docker stop java_service || true
+            docker rm java_service || true
+
             echo "🗑️ Removing old Docker image..."
             docker rmi ghcr.io/ruziba3vich/java_service:latest || true
-      
+
             echo "📥 Pulling latest Docker image..."
             docker pull ghcr.io/ruziba3vich/java_service:latest
-      
+
             echo "🔍 Checking for processes on port 704..."
             sudo fuser -k 701/tcp || true
-      
+
             echo "🚀 Running new container..."
-            docker run -d --restart always --name tmii-go-api-gateway -p 701:701 ghcr.io/ruziba3vich/java_service:latest
-      
+            docker run -d --restart always --name java_service -p 701:701 ghcr.io/ruziba3vich/java_service:latest
+
             echo "✅ Deployment Successful!"
